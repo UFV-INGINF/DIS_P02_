@@ -1,0 +1,33 @@
+# Java class files
+*.class
+
+# Maven target directory
+/target/
+
+# Logs
+*.log
+
+# VS Code settings
+.vscode/
+.history/
+
+# IDEs
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Mac/Linux hidden files
+._*

@@ -1,0 +1,31 @@
+name: Evaluación P1
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  check-p1:
+    runs-on: self-hosted
+
+    steps:
+      - name: Clonar repositorio del alumno
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Ejecutar evaluación P1
+        run: |
+          pip install --upgrade pip
+          python check_p1.py
+
+      - name: Guardar resultado en carpeta local del servidor
+        run: |
+          mkdir -p /srv/notas/P1
+          ALUMNO=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f2 | sed 's/^DIS_P01_//')
+          cp resultados.csv /srv/notas/P1/${ALUMNO}.csv
