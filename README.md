@@ -1,62 +1,116 @@
-# Práctica 1: Git básico (add, commit, status, log)
+# 🚀 P02 – Git avanzado (branch, merge, conflictos)
 
-## 🎯 Objetivo
+## 🎯 Objetivo de la práctica
+En esta práctica aprenderás a trabajar con **ramas en Git**, fusionar cambios entre ellas y resolver conflictos.  
+Son habilidades clave para cualquier desarrollador que trabaje en equipo y quiera mantener un flujo de trabajo limpio y organizado.
 
-Familiarizarse con los comandos básicos de Git trabajando desde el terminal:
+> 📌 **Práctica individual**  
 
-- Añadir y modificar archivos
-- Hacer commits
-- Consultar el estado del repositorio
-- Ver el historial de cambios
+---
 
-## 🧪 Instrucciones
+## 📚 Lo que vas a aprender
+- Crear y gestionar ramas (`git branch`, `git checkout`, `git switch`).
+- Fusionar ramas (`git merge`).
+- Provocar y resolver conflictos.
+- Buenas prácticas con ramas.
 
-1. Acepta la práctica desde GitHub Classroom usando el enlace proporcionado por el profesor.
+---
 
-2. Clona tu repositorio en local con Visual Studio Code:
+## 🛠 Pasos a seguir
 
-![clonar con Code](img/imagen1_repo.png)
-
+### 1️⃣ Clonar el repositorio
+Clona el repositorio asignado por **GitHub Classroom**:
 ```bash
-git clone https://github.com/ufv-dis-2025/p1-git-basico-TUUSUARIO.git
-cd p1-git-basico-TUUSUARIO
+git clone <URL-de-tu-repositorio>
+cd <nombre-del-repo>
 ```
 
-> También puedes usar `Git: Clone` desde el menú de comandos de Visual Studio Code (`Ctrl + Shift + P`).
-
-3. Abre la carpeta en Visual Studio Code y abre la terminal integrada (`Ctrl + ñ` o Terminal > Nueva Terminal).
-
-4. En la carpeta `tarea/`, abre el archivo `mi_historia.txt` y escribe un pequeño párrafo contando una experiencia personal como informático (elige uno):
-   - ¿Cómo aprendiste a programar?
-   - ¿Cuál fue tu primer error épico?
-   - Un chiste informático
-
-5. Guarda los cambios y realiza tu primer commit:
-
+### 2️⃣ Crear una nueva rama
+Crea una rama llamada `feature/frase` y cámbiate a ella:
 ```bash
-git status
-git add .
-git commit -m "Primera versión de mi historia personal"
+git checkout -b feature/frase
+```
+> Esto crea la rama y te sitúa en ella.
+
+### 3️⃣ Editar un archivo en la nueva rama
+- Abre el archivo `frases.txt` incluido en la carpeta `tarea` del repositorio.
+- Añade **una nueva línea** al final con una cita que te guste.
+- Guarda los cambios.
+
+Confirma los cambios:
+```bash
+git add tarea/frases.txt
+git commit -m "Añadida nueva frase en feature/frase"
 ```
 
-6. Vuelve a editar el archivo para añadir una segunda anécdota. Luego haz otro commit:
-
+### 4️⃣ Cambiar a la rama principal y modificar el mismo archivo
+Vuelve a la rama `main`:
 ```bash
-git add .
-git commit -m "Añadida segunda anécdota"
+git checkout main
+```
+- Edita **la misma línea** que acabas de añadir en `feature/frase`.
+- Guarda y confirma:
+```bash
+git add tarea/frases.txt
+git commit -m "Modificada frase en main"
 ```
 
-7. Usa `git log` para ver el historial de cambios y comprobar que todo ha quedado registrado.
+### 5️⃣ Fusionar ramas y provocar un conflicto
+Intenta fusionar `feature/frase` en `main`:
+```bash
+git merge feature/frase
+```
+Git detectará un **conflicto**.
 
-## ✅ Entrega
+### 6️⃣ Resolver el conflicto
+- Abre `frases.txt` y localiza las marcas:
+```
+<<<<<<< HEAD
+(versión en main)
+=======
+(versión en feature/frase)
+>>>>>>> feature/frase
+```
+- Elimina las marcas (`<<<<<<<`, `=======`, `>>>>>>>`) y deja el texto final como quieras.
+- Guarda y confirma:
+```bash
+git add tarea/frases.txt
+git commit -m "Conflicto resuelto entre main y feature/frase"
+```
 
-⚠️ **IMPORTANTE:** Hacer `git commit` solo guarda los cambios en tu ordenador.  
-Para que podamos recibir tu trabajo y lo podamos evaluar, **debes subirlo a GitHub** con `git push`: (fíjate bien si tu rama principal se llama main o se llama master)
-
+### 7️⃣ Subir las ramas a GitHub
 ```bash
 git push origin main
+git push origin feature/frase
 ```
-o si tu rama principal se llama master:
+
+---
+
+## ✅ Criterios de evaluación
+Se comprobará que:
+- [ ] Has creado la rama `feature/frase` correctamente.
+- [ ] Has hecho al menos un commit en la rama `feature/frase`.
+- [ ] Has editado el mismo archivo en `main` y `feature/frase` provocando un conflicto.
+- [ ] Has resuelto el conflicto correctamente.
+- [ ] Has subido **ambas ramas** a GitHub.
+- [ ] El historial (`git log --graph --oneline --all`) refleja la fusión.
+
+---
+
+## 💡 Consejos
+- Usa `git status` frecuentemente para conocer el estado de tu repositorio.
+- Antes de resolver conflictos, lee bien las marcas que pone Git.
+- Visualiza el historial con:
 ```bash
-git push origin master
+git log --graph --oneline --all
 ```
+- No borres la rama `feature/frase` hasta que hayas subido todo.
+
+---
+
+## 📎 Recursos recomendados
+- [Documentación oficial de Git](https://git-scm.com/doc)
+- [Aprende Git con ejercicios interactivos](https://learngitbranching.js.org/?locale=es_ES)
+- [Resolución de conflictos en GitHub Docs](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts)
+
+---
