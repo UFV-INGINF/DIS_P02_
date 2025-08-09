@@ -44,19 +44,19 @@ git commit -m "Añadida nueva frase en feature/frase"
 ```
 
 ### 4️⃣ Cambiar a la rama principal y modificar el mismo archivo
-Vuelve a la rama `main`:
+Vuelve a la rama `master`:
 ```bash
-git checkout main
+git checkout master
 ```
 - Edita **la misma línea** que acabas de añadir en `feature/frase`.
 - Guarda y confirma:
 ```bash
 git add tarea/frases.txt
-git commit -m "Modificada frase en main"
+git commit -m "Modificada frase en master"
 ```
 
 ### 5️⃣ Fusionar ramas y provocar un conflicto
-Intenta fusionar `feature/frase` en `main`:
+Intenta fusionar `feature/frase` en `master`:
 ```bash
 git merge feature/frase
 ```
@@ -66,7 +66,7 @@ Git detectará un **conflicto**.
 - Abre `frases.txt` y localiza las marcas:
 ```
 <<<<<<< HEAD
-(versión en main)
+(versión en master)
 =======
 (versión en feature/frase)
 >>>>>>> feature/frase
@@ -75,12 +75,12 @@ Git detectará un **conflicto**.
 - Guarda y confirma:
 ```bash
 git add tarea/frases.txt
-git commit -m "Conflicto resuelto entre main y feature/frase"
+git commit -m "Conflicto resuelto entre master y feature/frase"
 ```
 
 ### 7️⃣ Subir las ramas a GitHub
 ```bash
-git push origin main
+git push origin master
 git push origin feature/frase
 ```
 
@@ -90,7 +90,7 @@ git push origin feature/frase
 Se comprobará que:
 - [ ] Has creado la rama `feature/frase` correctamente.
 - [ ] Has hecho al menos un commit en la rama `feature/frase`.
-- [ ] Has editado el mismo archivo en `main` y `feature/frase` provocando un conflicto.
+- [ ] Has editado el mismo archivo en `master` y `feature/frase` provocando un conflicto.
 - [ ] Has resuelto el conflicto correctamente.
 - [ ] Has subido **ambas ramas** a GitHub.
 - [ ] El historial (`git log --graph --oneline --all`) refleja la fusión.
