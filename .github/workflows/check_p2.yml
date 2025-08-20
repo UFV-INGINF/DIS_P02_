@@ -29,5 +29,5 @@ jobs:
       - name: Guardar resultado en carpeta local del servidor
         run: |
           mkdir -p /srv/notas/P2
-          ALUMNO=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f2 | sed 's/^DIS_P02_//')
+          ALUMNO=$(echo "${GITHUB_REPOSITORY}" | cut -d'/' -f2 | sed 's/^dis-p02-//')
           cp resultados.csv /srv/notas/P2/${ALUMNO}.csv
